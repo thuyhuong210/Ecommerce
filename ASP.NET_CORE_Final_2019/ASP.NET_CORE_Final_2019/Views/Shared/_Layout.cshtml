@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cửa Hàng Rau Củ</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/fonts/font1.css" rel="stylesheet">
+    <link href="~/fonts/font2.css" rel="stylesheet">
+    <link href="~/fonts/font3.css" rel="stylesheet">
+    <meta name="author" content="Trần Bá Khoa" />
+    <meta name="keywords" content="rau củ, Quả, Đậu, Nước Ép, Khoa Rau Củ" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
+    <meta name="description" content="Cửa Hàng Rau Củ Sạch, Nước Ép Nguyên Chất 100%, Giao Hàng Miễn Phí và trong phút chốc, Hãy Liên Hệ Với Chúng Tôi Qua SDT :0867741780, email: ohwhynotme1999@gmail.com" />
+    <link rel="stylesheet" href="~/css/animate.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/css/aos.css">
+
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <link rel="stylesheet" href="~/css/style.css">
+
+    @*<script async src="https://www.googletagmanager.com/gtag/js?id=G-XKC33XMXFN"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-XKC33XMXFN');
+        </script>*@
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'G - XKC33XMXFN', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    @RenderSection("metasocials", required: false)
+
+</head>
+<body class="goto-here">
+    <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <span class="text">+84 354 450 719</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <span class="text">huongltt210@gmail.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+                            <span class="text">Giao hàng trong vòng 1 tiếng &amp; Không hoàn trả</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/Home">Cửa Hàng Rau Củ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="/Home" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cửa hàng</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="/Shop">Cửa hàng</a>
+                            @*<a class="dropdown-item" href="/Wishlist">Wishlist</a>*@
+                            @*<a class="dropdown-item" href="/Shop/Product">Sản phẩm</a>*@
+                            <a class="dropdown-item" href="/Cart">Giỏ hàng</a>
+                            @*<a class="dropdown-item" href="/Checkout">Thanh toán</a>*@
+                        </div>
+                    </li>
+                    @*<li class="nav-item"><a href="/About/Index" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="/Blog/Index" class="nav-link">Blog</a></li>*@
+                    <li class="nav-item"><a href="/Contact" class="nav-link">Liên hệ</a></li>
+                    <li class="nav-item cta cta-colored"><a href="/Cart" class="nav-link"><span class="icon-shopping_cart"></span>[@ViewData["Count"]]</a></li>
+                    @*<img class="img-fluid" src="~/images/product-2.jpg" alt="Colorlib Template">*@
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @*--END NAV--*@
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="ftco-footer ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="mouse">
+                    <a href="" class="mouse-icon">
+                        <div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
+                    </a>
+                </div>
+            </div>
+            <div class="row mb-5">
+       
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Danh mục</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/Home" class="py-2 d-block">Trang chủ</a></li>
+                            <li><a href="/Shop" class="py-2 d-block">Cửa hàng</a></li>
+                            <li><a href="/Cart" class="py-2 d-block">Giỏ hàng</a></li>
+                            <li><a href="/Contact" class="py-2 d-block">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Trợ giúp</h2>
+                        <div class="d-flex">
+                            <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                                <li><a href="/Contact" class="py-2 d-block">Thông tin giao hàng</a></li>
+                                <li><a href="/Contact" class="py-2 d-block">Đổi trả hàng</a></li>
+                                <li><a href="/Contact" class="py-2 d-block">Thời hạn sử dụng</a></li>
+                                <li><a href="/Contact" class="py-2 d-block">Chính sách bảo mật</a></li>
+                            </ul>
+                            @*<ul class="list-unstyled">
+                                    <li><a href="" class="py-2 d-block">FAQs</a></li>
+                                    <li><a href="" class="py-2 d-block">Liên hệ</a></li>
+                                </ul>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Nếu bạn có câu hỏi gì?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">280 An Dương Vương, Phường 4, Quận 5, Thành phố Hồ Chí Minh, Việt Nam</span></li>
+                                <li><span class="icon icon-phone"></span><span class="text">+84 354 450 719</span></li>
+                                <li><span class="icon icon-envelope"></span><span class="text">huongltt210@gmail.com</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.easing.1.3.js"></script>
+    <script src="~/js/jquery.waypoints.min.js"></script>
+    <script src="~/js/jquery.stellar.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/aos.js"></script>
+    <script src="~/js/jquery.animateNumber.min.js"></script>
+    <script src="~/js/bootstrap-datepicker.js"></script>
+    <script src="~/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/js/google-map.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    <!-- Load Facebook SDK for JavaScript -->
+    <!--<div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v9.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>-->
+    <!-- Your Chat Plugin code -->
+    <!--<div class="fb-customerchat"
+         attribution=setup_tool
+         page_id="102451651656370"
+         theme_color="#6699cc"
+         logged_in_greeting="Chào Mừng đến với Cửa Hàng Khoa Rau Củ"
+         logged_out_greeting="Chào Mừng đến với Cửa Hàng Khoa Rau Củ">
+    </div>-->
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+    <div class="elfsight-app-db8a7e47-7d29-4b4d-8b1f-c34326fdd072"></div>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5f97c15aaca01a1688360263/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>

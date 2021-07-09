@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ASP.NET_CORE_Final_2019.Models.Donhang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{VEGEFOOD_DBContext db = new VEGEFOOD_DBContext();}
+<div class="main-panel">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" style="background-image:url('/images/p9.jpg')">Thống Kê</h4>
+                        @*@foreach (var testingg in ViewBag.ListThongKeNgay)
+                        {
+                        Sanpham a = ViewBag.ListSanPham.Find(testingg.IdSanPham);
+                        <p>@testingg.Ngay : @a.Ten : @testingg.SoLuongTieuThu</p>
+                        }*@
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                @foreach (var date in ViewBag.ListDate)
+                                {
+                                    double? Total_Day = 0;
+                                    DateTime ShowDate = date;
+                                    List<Donhang> res = new List<Donhang>();
+
+                                    foreach (var donhang in ViewBag.ListDonHang)
+                                    {
+                                        if (donhang.TrangThai == 2)
+                                        {
+                                            if (donhang.Ngay.ToShortDateString() == ShowDate.ToShortDateString())
+                                            {
+                                                res.Add(donhang);
+                                            }
+                                        }
+
+                                    }
+
+                                    <thead>
+                                    <th style="background-color:lawngreen">@ShowDate.ToShortDateString()</th>
+                                    <tr>
+                                        <th>
+                                            Mã Đơn Hàng
+                                        </th>
+                                        <th>
+                                            Email Khách Hàng
+                                        </th>
+                                        <th>
+                                            Giờ Đặt
+                                        </th>
+                                        <th>
+                                            Tổng Tiền Đơn Hàng
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in res)
+                                        {
+
+                                            var list = db.Chitietdonhang.Where(p => p.Id == item.Id).ToList();
+                                            double? sum = 0;
+                                            foreach (var i in list)
+                                            {
+                                                sum = sum + i.Gia;
+
+                                            }
+                                            Total_Day += sum;
+                                            <tr>
+                                                <td>
+                                                    @item.Id
+                                                </td>
+                                                <td>
+                                                    @item.EmailKhachHang
+                                                </td>
+                                                <td>
+                                                    @item.Ngay.ToString("HH:mm:ss")
+
+                                                </td>
+                                                <td>
+                                                    @string.Format("{0:#,0.####}", sum) VND
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    <th>
+                                        Tổng Thu Nhập Trong Ngày : @Total_Day
+                                    </th>
+                                    <th>
+                                        @{
+                                            var listTieuThu = db.Thongkengay.Where(p => p.Ngay == ShowDate).ToList();
+                                            foreach (var testing in listTieuThu)
+                                            {
+                                                Sanpham a = ViewBag.ListSanPham.Find(testing.IdSanPham);
+                                                if (a.IdLoaiSanPham == 4)
+                                                {
+                                                    <div style="display:block"> @a.Ten : @testing.SoLuongTieuThu Ly</div>
+                                                }
+                                                else
+                                                {
+                                                    <div style="display:block"> @a.Ten : @testing.SoLuongTieuThu gam</div>
+                                                }
+
+                                            }
+                                        }
+                                    </th>
+                                    </tbody>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

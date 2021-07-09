@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ASP.NET_CORE_Final_2019.Models.Khachhang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    VEGEFOOD_DBContext db = new VEGEFOOD_DBContext();
+}
+<div class="main-panel">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" style="background-image:url('/images/p9.jpg')">Danh Sách Khách Hàng</h4>
+                        <a asp-controller="KhachHang" asp-action="ExportCSV">Export CSV  <span><i class="fa fa-file"></i> </span></a> Hoặc
+
+                        <a asp-controller="KhachHang" asp-action="ExportXlsx" style="color:red">Export Excel <span><i class="fa fa-file-excel-o"></span></i></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Email Khách Hàng
+                                        </th>
+                                        <th>
+                                            Tên
+                                        </th>
+                                        <th>
+                                            Số Điện Thoại
+                                        </th>
+                                        <th>
+                                            Địa Chỉ
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ten)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Sdt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DiaChi)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-Email="@item.Email">Edit</a> 
+                                            @if (db.Donhang.Where(p=>p.EmailKhachHang==item.Email)==null)
+                                            {
+                                           
+                                            <a asp-action="Delete" asp-route-Email="@item.Email">| Delete</a>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                    }
+                                    @*<tr>
+                                        <td>
+                                            <button>
+                                                <a asp-action="Create">
+                                                    Thêm Khách Hàng
+                                                </a>
+                                            </button>
+                                        </td>
+                                    </tr>*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

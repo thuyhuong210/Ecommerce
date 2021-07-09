@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ASP.NET_CORE_Final_2019.Models.Donhang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="main-panel">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" style="background-image:url('/images/p9.jpg')">Danh Sách Đơn Hàng</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            Email Khách Hàng
+                                        </th>
+                                        <th>
+                                            Trạng Thái
+                                        </th>
+                                        <th>
+                                            Thời Gian Đặt
+                                        </th>
+                                        <th>
+                                            Phương Thức Thanh Toán
+                                        </th>
+                                        <th>
+                                            Mô Tả
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.EmailKhachHang != "not" && item.TrangThai!=2)
+                                        {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EmailKhachHang)
+                                        </td>
+                                        @if (item.TrangThai == 0)
+                                        {
+                                            <td style="color:orangered">Chưa Xử Lý</td>
+                                        }
+                                        else if (item.TrangThai == 1)
+                                        {
+                                            <td style="color:forestgreen">Đang Giao</td>
+                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Ngay)
+                                        </td>
+                                        <td>
+                                            @item.PhuongThucThanhToan
+                                        </td>
+                                        <td>
+                                            @item.Description
+                                        </td>
+                                        <td>
+                                            @*<a asp-action="ChuaXuLy" asp-route-id="@item.Id">Chưa Xử Lý</a>*@
+                                            <a asp-action="GiaoHang" asp-route-id="@item.Id" title="Giao Hàng">Giao Hàng <span class="fa fa-shopping-cart"></span></a> |
+
+                                            <a style="color:chocolate" asp-action="HoanThanh" asp-route-id="@item.Id" title="Hoàn Thành">Hoàn Thành <span class="fa fa-check-square-o"></span></a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-black">Xem <span class="fa fa-eye"></span></a>
+                                        </td>
+                                    </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                                <a asp-action="Clean" type="button">
+                                    Clean Up
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

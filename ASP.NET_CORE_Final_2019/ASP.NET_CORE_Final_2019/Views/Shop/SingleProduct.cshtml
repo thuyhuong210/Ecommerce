@@ -1,0 +1,208 @@
+﻿@model ASP.NET_CORE_Final_2019.Models.Chitietdonhang
+@*@model ASP.NET_CORE_Final_2019.Models.Chitietsanpham*@
+
+@{ ViewData["Title"] = "SingleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    string url = "http://khoaraucu.somee.com" + ViewBag.SanPham.HinhAnh;
+}
+@section metasocials{
+    <meta property="fb:app_id" content="2791339371124514" />
+    <meta property="og:url" content="http://khoaraucu.sommee.com/" />
+    <meta property="og:title" content="@ViewBag.SanPham.Ten - @ViewBag.Chitietsanpham.Gia VND" />
+    <meta property="og:description" content="Cửa Hàng Rau Sạch Khoa Rau Củ chuyên Cung cấp Các Loại rau củ và nước ép nguyên chất" />
+    <meta property="og:image" content=@url />
+    <meta property="og:type" content="article" />
+    <link rel="canonical" href="http://khoaraucu.sommee.com/@ViewBag.CateTitle/@ViewBag.MetaTitle" />
+}
+@{ string currentUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path;
+    string enc = System.Net.WebUtility.UrlEncode(currentUrl); }
+<div class="hero-wrap hero-bread" style="background-image: url('/images/bg_1.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="/Home">Trang chủ</a></span> <span>Sản phẩm</span></p>
+                <h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row" itemscope itemtype="https://schema.org/Product">
+            <div class="col-lg-6 mb-5 ftco-animate">
+                <a href="images/product-1.jpg" class="image-popup"><img itemprop="image" src="@ViewBag.SanPham.HinhAnh" class="img-fluid" alt="Colorlib Template"></a>
+                <input type="hidden" itemprop="sku" value="@ViewBag.SanPham.Id" />
+                <meta itemprop="gtin8" content="12345678" />
+            </div>
+            <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+                <h3 itemprop="name">@ViewBag.SanPham.Ten</h3>
+                <iframe src="https://www.facebook.com/plugins/share_button.php?href=@enc&layout=button&size=large&width=87&height=28&appId,width=626,height=436"
+                        width="87"
+                        height="28"
+                        style="border:none;
+                                overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media">
+                </iframe>
+                <div class="d-flex">
+                    <div class="pricing">
+                        <p itemprop="brand">Loại:    @ViewBag.Loai.Ten </p>
+                    </div>
+                </div>
+                @if (ViewBag.Chitietsanpham.GiaKhuyenMai == 100)
+                {
+                    <p class="price">Giá <span> @ViewBag.Chitietsanpham.Gia VNĐ</span></p> }
+                else
+                {
+                    double? gkm = ViewBag.ChiTietSanPham.Gia * ViewBag.Chitietsanpham.GiaKhuyenMai / 100;
+                    <p class="price">Giá <span> @ViewBag.Chitietsanpham.Gia VNĐ</span>  Khuyến Mãi Còn: <span> @gkm VND</span></p>
+                }
+                <div itemprop="offers" itemtype="http://schema.org/Offer" itemscope>
+                    <meta itemprop="price" content=@ViewBag.Chitietsanpham.Gia>
+                    <meta itemprop="availability" content="inStock">
+                    <meta itemprop="url" content="http://khoaraucu.sommee.com/rau-cu/bong-cai">
+                    <meta itemprop="priceCurrency" content="VND">
+                    <meta itemprop="priceValidUntil" content="1000">
+                </div>
+                <p itemprop="description">
+                    Sản Phẩm Đạt Chuẩn Chất Lượng. Được Công Nhận Bởi Hội Sao Vàng Thực Phẩm Việt Nam.
+                    Cửa Hàng Khoa Rau Củ cam đoan luôn mang lại rau củ sạch sẽ, tươi và các loại nước ép nguyên chất từ các loại hoa quả , rau củ xanh, tươi 100%.
+                    Đồng thời chúng tôi sẽ miễng phí giao hàng cho bạn.
+                </p>
+                <form asp-action="SingleProduct">
+                    <input type="hidden" asp-for="Id" value="@ViewBag.ss" />
+                    <input type="hidden" asp-for="IdSanPham" />
+                    <div class="row mt-4">
+                        <div class="w-100"></div>
+                        <div class="input-group col-md-6 d-flex mb-3">
+                            @if (ViewBag.Loai.Id != 4)
+                            {@*<span class="input-group-btn mr-2">
+                                        <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" onclick="dec()">
+                                            <i class="ion-ios-remove"></i>
+                                        </button>
+                                    </span>*@
+                            <input asp-for="SoLuong" type="number" min="100" max="100000" step="100"> @*<span class="input-group-btn ml-2">
+                                    <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" onclick="inc()">
+                                        <i class="ion-ios-add"></i>
+                                    </button>
+                                </span>*@
+                            <p style="margin: 7px; margin-left: 15px;">(Đơn vị: gram)</p> }
+                        else
+                        { @*<span class="input-group-btn mr-2">
+                                    <button type="button" class="quantity-left-minus btn" data-type="minus" data-field="" onclick="decc()">
+                                        <i class="ion-ios-remove"></i>
+                                    </button>
+                                </span>*@
+                        <input asp-for="SoLuong" type="number" min="1" max="100" step="1"> @*<span class="input-group-btn ml-2">
+                                <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="" onclick="incc()">
+                                    <i class="ion-ios-add"></i>
+                                </button>
+                            </span>*@
+                        <p style="margin: 7px; margin-left: 15px;">(Đơn vị: ly)</p>}
+                        </div>
+                        <div class="w-100"></div>
+                        <input type="hidden" asp-for="Gia" value="0" />
+                        <div class="input-group col-md-12 d-flex mb-3">
+                            @if (ViewBag.Loai.Id != 4)
+                            {
+                                double? tonkho = (double)(ViewBag.ChiTietSanPham.SoLuongNhap - ViewBag.ChiTietSanPham.SoLuongTieuThu) / 1000;
+                                <p style="color: #000;">Còn @tonkho kilogram</p>}
+                        </div>
+                    </div>
+                    <p><input type="submit" class="btn btn-black py-3 px-5" value="Add to Cart"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Sản phẩm</span>
+                <h2 class="mb-4" itemprop="gtin13" content="1234567891231">Sản phẩm cùng loại</h2>
+                @*<p>Những sản phẩm cùng loại</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            @{int cnt = 0; }
+            @{ foreach (var item in ViewBag.SanPhamCungLoai)
+                {
+                    if (item.Id != ViewBag.SanPham.Id)
+                    {
+                        cnt++;
+
+                        Chitietsanpham itemDetail = ViewBag.ListChiTietSanPham.Find(item.Id);
+                        <div class="col-md-6 col-lg-3 ftco-animate">
+                            <div class="product">
+                                <a href="/Shop/@ViewBag.CateTitle/@item.metatitle" class="img-prod">
+                                    <img class="img-fluid" src="@item.HinhAnh" alt="Colorlib Template" style="height: 200px; width:245px;">
+                                    @{ double? km = 100 - itemDetail.GiaKhuyenMai;}
+                                    <span class="status">Khuyến mãi @km%</span>
+                                    <div class="overlay"></div>
+                                </a>
+                                <div class="text py-3 pb-4 px-3 text-center">
+                                    <h3><a href="/Shop/@ViewBag.CateTitle/@item.metatitle">@item.Ten</a></h3>
+                                    <div class="d-flex">
+                                        <div class="pricing">
+                                            @{ if (itemDetail.GiaKhuyenMai == 100)
+                                                {
+                                                    <p class="price">@*<span class="mr-2 price-dc"></span>*@<span class="price-sale">@itemDetail.Gia</span> VNĐ</p> }
+                                                else
+                                                {
+                                                    double? gkm = itemDetail.Gia * itemDetail.GiaKhuyenMai / 100;
+                                                    <p class="price"><span class="mr-2 price-dc">@itemDetail.Gia VNĐ</span><span class="price-sale">@gkm</span> VNĐ</p> } }
+
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area d-flex px-3">
+                                        <div class="m-auto d-flex">
+                                            <a href="/Shop/@ViewBag.CateTitle/@item.metatitle" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                                <span><i class="ion-ios-menu"></i></span>
+                                            </a>
+                                            <a href="/Cart/Update/@ViewData["Session"]/@item.Id" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                                <span><i class="ion-ios-cart"></i></span>
+                                            </a>
+                                            @*<a href="" class="heart d-flex justify-content-center align-items-center ">
+                                                    <span><i class="ion-ios-heart"></i></span>
+                                                </a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> if (cnt == 4) { break; }
+                    }
+                } }
+
+
+        </div>
+    </div>
+
+</section>
+
+<div>
+    @*<a asp-action="Edit" asp-route-id="@Model.IdSanPham">Edit</a> |*@
+</div>
+<script>
+    function inc() {
+        if (parseInt(document.getElementById("quantity").value) < 100000)
+            document.getElementById("quantity").setAttribute('value', (parseInt(document.getElementById("quantity").value) + 100).toString());
+        //document.getElementById("quantity").setAttribute('name', 'vl');
+    }
+    function incc() {
+        if (parseInt(document.getElementById("quantity").value) < 100)
+            document.getElementById("quantity").setAttribute('value', (parseInt(document.getElementById("quantity").value) + 1).toString());
+    }
+    function dec() {
+        if (parseInt(document.getElementById("quantity").value) > 100)
+            document.getElementById("quantity").setAttribute('value', (parseInt(document.getElementById("quantity").value) - 100).toString());
+    }
+    function decc() {
+        if (parseInt(document.getElementById("quantity").value) > 1)
+            document.getElementById("quantity").setAttribute('value', (parseInt(document.getElementById("quantity").value) - 1).toString());
+    }
+</script>
